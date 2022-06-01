@@ -1,6 +1,7 @@
 package com.princeoprince.notekeeper
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter
 import com.princeoprince.notekeeper.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private val tag = this::class.simpleName
     private var notePosition = POSITION_NOT_SET
 
     private lateinit var mainBinding: ActivityMainBinding
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(mainBinding.root)
         setSupportActionBar(mainBinding.toolbar)
 
-        val adapterCourses = ArrayAdapter<CourseInfo>(this,
+        val adapterCourses = ArrayAdapter(this,
                 android.R.layout.simple_spinner_item,
                 DataManager.courses.values.toList())
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         else {
             createNewNote()
         }
+        Log.d(tag, "onCreate")
     }
 
     private fun createNewNote() {
@@ -48,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun displayNote() {
+        Log.i(tag, "Displaying note for position $notePosition")
         val note = DataManager.notes[notePosition]
         mainBinding.content.textNoteTitle.setText(note.title)
         mainBinding.content.textNoteText.setText(note.text)
@@ -96,6 +100,7 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         saveNote()
+        Log.d(tag, "onPause")
     }
 
     private fun saveNote() {
