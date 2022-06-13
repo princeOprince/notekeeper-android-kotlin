@@ -10,7 +10,7 @@ object DataManager {
     }
 
     fun addNote(course: CourseInfo, noteTitle: String, noteText: String): Int {
-        return -1
+        return 0
     }
 
     private fun initialiseCourses() {
