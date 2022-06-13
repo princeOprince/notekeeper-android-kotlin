@@ -15,6 +15,14 @@ object DataManager {
         return notes.lastIndex
     }
 
+    fun findNote(course: CourseInfo, noteTitle: String, noteText: String): NoteInfo? {
+        for (note in notes) {
+            if (course == note.course && noteTitle == note.title && noteText == note.text)
+                return note
+        }
+        return null
+    }
+
     private fun initialiseCourses() {
         var course = CourseInfo("android_intents", "Android Programming with Intents")
         courses[course.courseId] = course
