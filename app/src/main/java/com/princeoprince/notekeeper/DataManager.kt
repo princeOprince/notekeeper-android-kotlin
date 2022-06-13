@@ -9,6 +9,9 @@ object DataManager {
         initialiseExampleNotes()
     }
 
+    fun addNote(course: CourseInfo, noteTitle: String, noteText: String): Int {
+        return -1
+    }
 
     private fun initialiseCourses() {
         var course = CourseInfo("android_intents", "Android Programming with Intents")
