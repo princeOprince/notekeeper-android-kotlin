@@ -7,6 +7,12 @@ import org.junit.Before
 
 class DataManagerTest {
 
+    @Before
+    fun setUp() {
+        DataManager.notes.clear()
+        DataManager.initialiseNotes()
+    }
+
     @Test
     fun addNote() {
         val course = DataManager.courses["android_async"]!!
