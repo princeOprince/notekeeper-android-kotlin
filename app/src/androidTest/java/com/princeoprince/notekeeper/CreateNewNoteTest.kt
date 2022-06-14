@@ -14,6 +14,9 @@ import org.junit.Rule
 @RunWith(AndroidJUnit4::class)
 class CreateNewNoteTest{
 
+    @Rule @JvmField
+    val noteListActivity = ActivityScenarioRule(NoteListActivity::class.java)
+
     @Test
     fun createNewNote() {
 
