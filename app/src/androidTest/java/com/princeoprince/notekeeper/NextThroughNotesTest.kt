@@ -12,6 +12,7 @@ import androidx.test.espresso.action.ViewActions.*
 import org.junit.Rule
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.assertion.ViewAssertions.matches
 
 @RunWith(AndroidJUnit4::class)
 class NextThroughNotesTest{
@@ -26,6 +27,10 @@ class NextThroughNotesTest{
 
         for (index in 0..DataManager.notes.lastIndex) {
             val note = DataManager.notes[index]
+
+            onView(withId(R.id.spinnerCourses)).check(matches(withSpinnerText(note.course?.title)))
+            onView(withId(R.id.textNoteTitle)).check(matches(withText(note.title)))
+            onView(withId(R.id.textNoteText)).check(matches(withText(note.text)))
         }
     }
 }
