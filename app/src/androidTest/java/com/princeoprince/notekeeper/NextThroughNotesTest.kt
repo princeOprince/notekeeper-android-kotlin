@@ -21,5 +21,11 @@ class NextThroughNotesTest{
 
     @Test
     fun nextThroughNotes() {
+        onData(allOf(instanceOf(NoteInfo::class.java), equalTo(DataManager.notes.first()))).perform(
+            click())
+
+        for (index in 0..DataManager.notes.lastIndex) {
+            val note = DataManager.notes[index]
+        }
     }
 }
