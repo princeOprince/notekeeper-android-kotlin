@@ -11,6 +11,7 @@ import org.hamcrest.Matchers.*
 import androidx.test.espresso.action.ViewActions.*
 import org.junit.Rule
 import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 
 @RunWith(AndroidJUnit4::class)
 class CreateNewNoteTest{
@@ -30,8 +31,13 @@ class CreateNewNoteTest{
         onData(allOf(instanceOf(CourseInfo::class.java), equalTo(course))).perform(click())
 
         onView(withId(R.id.textNoteTitle)).perform(typeText(noteTitle))
-        onView(withId(R.id.textNoteText)).perform(typeText(noteText))
+        onView(withId(R.id.textNoteText)).perform(typeText(noteText), closeSoftKeyboard())
 
         pressBack()
+
+        val newNote = DataManager.notes.last()
+        assertEquals(course, newNote.course)
+        assertEquals(noteTitle, newNote.title)
+        assertEquals(noteText, newNote.text)
     }
 }
