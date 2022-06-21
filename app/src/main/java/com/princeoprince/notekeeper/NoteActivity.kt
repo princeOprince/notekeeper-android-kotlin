@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.widget.ArrayAdapter
 import com.princeoprince.notekeeper.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class NoteActivity : AppCompatActivity() {
     private val tag = this::class.simpleName
     private var notePosition = POSITION_NOT_SET
 
