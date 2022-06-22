@@ -3,15 +3,12 @@ package com.princeoprince.notekeeper
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.test.espresso.Espresso.onData
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.pressBack
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions.*
+import androidx.test.espresso.Espresso.*
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.filters.LargeTest
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.*
@@ -49,7 +46,7 @@ class NoteListActivityTest {
         val appCompatCheckedTextView =
             onData(allOf(instanceOf(CourseInfo::class.java)))
                 .atPosition(2)
-        
+
         appCompatCheckedTextView.perform(click())
 
         pressBack()
