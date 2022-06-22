@@ -2,13 +2,15 @@ package com.princeoprince.notekeeper
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.princeoprince.notekeeper.databinding.ActivityNoteListBinding
+import com.princeoprince.notekeeper.databinding.ContentNoteListBinding
 
 class NoteListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNoteListBinding
+    private lateinit var content: ContentNoteListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,19 +25,11 @@ class NoteListActivity : AppCompatActivity() {
             startActivity(activityIntent)
         }
 
-        binding.include.listNotes.adapter = ArrayAdapter(this,
-                                                android.R.layout.simple_list_item_1,
-                                                    DataManager.notes)
+        content.listItems.layoutManager = LinearLayoutManager(this)
 
-        binding.include.listNotes.setOnItemClickListener{ _, _, position, _ ->
-            val activityIntent = Intent(this, NoteActivity::class.java)
-            activityIntent.putExtra(NOTE_POSITION, position)
-            startActivity(activityIntent)
-        }
     }
 
     override fun onResume() {
         super.onResume()
-        (binding.include.listNotes.adapter as ArrayAdapter<*>).notifyDataSetChanged()
     }
 }
