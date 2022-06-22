@@ -30,42 +30,26 @@ class NoteListActivityTest {
 
     @Test
     fun noteListActivityTest() {
-        val floatingActionButton = onView(
-allOf(withId(R.id.fab),
-childAtPosition(
-childAtPosition(
-withId(android.R.id.content),
-0),
-2),
-isDisplayed()))
+        val floatingActionButton =
+            onView(allOf(withId(R.id.fab), childAtPosition(
+                childAtPosition(withId(android.R.id.content), 0), 2),
+                    isDisplayed()))
+
         floatingActionButton.perform(click())
 
-         // Added a sleep statement to match the app's execution delay.
- // The recommended way to handle such scenarios is to use Espresso idling resources:
-  // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-Thread.sleep(250)
+        val appCompatSpinner =
+            onView(allOf(withId(R.id.spinnerCourses),
+                childAtPosition(allOf(withId(R.id.content),
+                    childAtPosition(withClassName(
+                            `is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
+                        1)), 1), isDisplayed()))
 
-        val appCompatSpinner = onView(
-allOf(withId(R.id.spinnerCourses),
-childAtPosition(
-allOf(withId(R.id.content),
-childAtPosition(
-withClassName(`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
-1)),
-1),
-isDisplayed()))
         appCompatSpinner.perform(click())
 
-         // Added a sleep statement to match the app's execution delay.
- // The recommended way to handle such scenarios is to use Espresso idling resources:
-  // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-Thread.sleep(250)
-
-        val appCompatCheckedTextView = onData(anything())
-.inAdapterView(childAtPosition(
-withClassName(`is`("android.widget.PopupWindow$PopupBackgroundView")),
-0))
-.atPosition(2)
+        val appCompatCheckedTextView =
+            onData(allOf(instanceOf(CourseInfo::class.java)))
+                .atPosition(2)
+        
         appCompatCheckedTextView.perform(click())
 
         pressBack()
