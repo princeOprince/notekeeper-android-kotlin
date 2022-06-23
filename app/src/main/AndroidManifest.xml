@@ -10,6 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteKeeper">
         <activity
+            android:name=".ItemsActivity"
+            android:label="@string/title_activity_items"
+            android:theme="@style/Theme.NoteKeeper.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".NoteListActivity"
             android:label="NoteKeeper"
             android:theme="@style/Theme.NoteKeeper.NoActionBar">
@@ -22,8 +32,7 @@
         <activity
             android:name=".NoteActivity"
             android:label="Edit Note"
-            android:theme="@style/Theme.NoteKeeper.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.NoteKeeper.NoActionBar"></activity>
     </application>
 
 </manifest>
