@@ -34,7 +34,7 @@ class ItemsActivity : AppCompatActivity() {
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.listItems)
+        val navController = findNavController(R.id.nav_host_fragment_content_items)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -58,7 +58,7 @@ class ItemsActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.listItems)
+        val navController = findNavController(R.id.nav_host_fragment_content_items)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
