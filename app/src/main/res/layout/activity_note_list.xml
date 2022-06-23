@@ -32,6 +32,6 @@
         android:layout_marginRight="64px"
         android:layout_marginBottom="64px"
         android:backgroundTint="#F44336"
-        app:srcCompat="@drawable/ic_baseline_add_24" />
+        app:srcCompat="@drawable/ic_add_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
