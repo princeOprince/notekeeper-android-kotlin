@@ -1,5 +1,6 @@
 package com.princeoprince.notekeeper
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -11,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.princeoprince.notekeeper.databinding.ActivityItemsBinding
 
 class ItemsActivity : AppCompatActivity() {
@@ -26,13 +28,13 @@ class ItemsActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarItems.toolbar)
 
-        binding.appBarItems.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.appBarItems.fab.setOnClickListener {
+            val activityIntent = Intent(this, NoteActivity::class.java)
+            startActivity(activityIntent)
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_items)
+        val navController = findNavController(R.id.listItems)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -42,6 +44,11 @@ class ItemsActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        binding.appBarItems.include.listItems.layoutManager = LinearLayoutManager(this)
+        binding.appBarItems.include.listItems.adapter =
+            NoteRecyclerAdapter(this, DataManager.notes)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -51,7 +58,12 @@ class ItemsActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_items)
+        val navController = findNavController(R.id.listItems)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.appBarItems.include.listItems.adapter?.notifyDataSetChanged()
     }
 }
