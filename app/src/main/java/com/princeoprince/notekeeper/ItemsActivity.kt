@@ -3,21 +3,19 @@ package com.princeoprince.notekeeper
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.princeoprince.notekeeper.databinding.ActivityItemsBinding
 
-class ItemsActivity : AppCompatActivity() {
+class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityItemsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,28 +24,29 @@ class ItemsActivity : AppCompatActivity() {
         binding = ActivityItemsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarItems.toolbar)
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.navView
+        val toolbar: Toolbar = binding.appBarItems.toolbar
+        val listItems: RecyclerView = binding.appBarItems.include.listItems
+
+        setSupportActionBar(toolbar)
 
         binding.appBarItems.fab.setOnClickListener {
             val activityIntent = Intent(this, NoteActivity::class.java)
             startActivity(activityIntent)
         }
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_items)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-            ), drawerLayout
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
 
-        binding.appBarItems.include.listItems.layoutManager = LinearLayoutManager(this)
-        binding.appBarItems.include.listItems.adapter =
-            NoteRecyclerAdapter(this, DataManager.notes)
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar, R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        navView.setNavigationItemSelectedListener(this)
+
+        listItems.layoutManager = LinearLayoutManager(this)
+        listItems.adapter = NoteRecyclerAdapter(this, DataManager.notes)
 
     }
 
@@ -57,13 +56,26 @@ class ItemsActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_items)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
     override fun onResume() {
         super.onResume()
         binding.appBarItems.include.listItems.adapter?.notifyDataSetChanged()
     }
+
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        }
+        else super.onBackPressed()
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.nav_home -> {}
+            R.id.nav_gallery -> {}
+            R.id.nav_slideshow -> {}
+        }
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
 }
+
