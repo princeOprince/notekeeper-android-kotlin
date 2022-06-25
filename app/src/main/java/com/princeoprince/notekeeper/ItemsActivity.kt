@@ -12,11 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.princeoprince.notekeeper.databinding.ActivityItemsBinding
 
 class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityItemsBinding
+    private lateinit var listItems: RecyclerView
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +27,10 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         binding = ActivityItemsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val drawerLayout: DrawerLayout = binding.drawerLayout
+        drawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val toolbar: Toolbar = binding.appBarItems.toolbar
-        val listItems: RecyclerView = binding.appBarItems.include.listItems
+        listItems = binding.appBarItems.include.listItems
 
         setSupportActionBar(toolbar)
 
@@ -58,23 +61,37 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     override fun onResume() {
         super.onResume()
-        binding.appBarItems.include.listItems.adapter?.notifyDataSetChanged()
+        listItems.adapter?.notifyDataSetChanged()
     }
 
     override fun onBackPressed() {
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
         }
         else super.onBackPressed()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.nav_notes -> {}
-            R.id.nav_courses -> {}
+            R.id.nav_notes -> {
+                handleSelection("Notes")
+            }
+            R.id.nav_courses -> {
+                handleSelection("Courses")
+            }
+            R.id.nav_share -> {
+                handleSelection("Share")
+            }
+            R.id.nav_send -> {
+                handleSelection("Send")
+            }
         }
-        binding.drawerLayout.closeDrawer(GravityCompat.START)
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun handleSelection(message: String) {
+        Snackbar.make(listItems, message, Snackbar.LENGTH_LONG).show()
     }
 }
 
