@@ -21,6 +21,7 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private lateinit var binding: ActivityItemsBinding
     private lateinit var listItems: RecyclerView
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
 
     private val noteLayoutManager by lazy { LinearLayoutManager(this) }
 
@@ -35,7 +36,7 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         setContentView(binding.root)
 
         drawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
+        navView = binding.navView
         val toolbar: Toolbar = binding.appBarItems.toolbar
         listItems = binding.appBarItems.include.listItems
 
@@ -55,9 +56,15 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         navView.setNavigationItemSelectedListener(this)
 
+        displayNotes()
+
+    }
+
+    private fun displayNotes() {
         listItems.layoutManager = noteLayoutManager
         listItems.adapter = noteRecyclerAdapter
 
+        navView.menu.findItem(R.id.nav_notes).isChecked = true
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -81,7 +88,7 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.nav_notes -> {
-                handleSelection("Notes")
+                displayNotes()
             }
             R.id.nav_courses -> {
                 handleSelection("Courses")
