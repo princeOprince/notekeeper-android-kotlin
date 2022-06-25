@@ -14,12 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.princeoprince.notekeeper.databinding.ActivityItemsBinding
+import kotlin.reflect.KProperty
 
 class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityItemsBinding
     private lateinit var listItems: RecyclerView
     private lateinit var drawerLayout: DrawerLayout
+
+    private val noteLayoutManager by lazy { LinearLayoutManager(this) }
+
+    private val noteRecyclerAdapter by lazy {
+        NoteRecyclerAdapter(this, DataManager.notes)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +55,8 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         navView.setNavigationItemSelectedListener(this)
 
-        listItems.layoutManager = LinearLayoutManager(this)
-        listItems.adapter = NoteRecyclerAdapter(this, DataManager.notes)
+        listItems.layoutManager = noteLayoutManager
+        listItems.adapter = noteRecyclerAdapter
 
     }
 
@@ -94,4 +101,3 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         Snackbar.make(listItems, message, Snackbar.LENGTH_LONG).show()
     }
 }
-
