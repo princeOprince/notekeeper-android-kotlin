@@ -10,11 +10,11 @@ import com.google.android.material.navigation.NavigationView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.princeoprince.notekeeper.databinding.ActivityItemsBinding
-import kotlin.reflect.KProperty
 
 class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,8 +25,14 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     private val noteLayoutManager by lazy { LinearLayoutManager(this) }
 
+    private val courseLayoutManager by lazy { GridLayoutManager(this, 2) }
+
     private val noteRecyclerAdapter by lazy {
         NoteRecyclerAdapter(this, DataManager.notes)
+    }
+
+    private val courseRecyclerAdapter by lazy {
+        CourseRecyclerAdapter(this, DataManager.courses.values.toList())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +73,13 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         navView.menu.findItem(R.id.nav_notes).isChecked = true
     }
 
+    private fun displayCourses() {
+        listItems.layoutManager = courseLayoutManager
+        listItems.adapter = courseRecyclerAdapter
+
+        navView.menu.findItem(R.id.nav_courses).isChecked = true
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.items, menu)
@@ -91,7 +104,7 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 displayNotes()
             }
             R.id.nav_courses -> {
-                handleSelection("Courses")
+                displayCourses()
             }
             R.id.nav_share -> {
                 handleSelection("Share")
