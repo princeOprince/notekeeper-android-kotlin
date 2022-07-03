@@ -20,11 +20,15 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@android:drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/nav_share_message" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@android:drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="@string/nav_send_message" />
+            <item
+                android:id="@+id/nav_count"
+                android:icon="@android:drawable/ic_menu_help"
+                android:title="@string/nav_count_message" />
         </menu>
     </item>
 </menu>

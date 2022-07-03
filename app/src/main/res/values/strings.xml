@@ -19,4 +19,5 @@
     <string name="note_text_hint">Note text</string>
     <string name="nav_share_message">Share</string>
     <string name="nav_send_message">Send</string>
+    <string name="nav_count_message">How many</string>
 </resources>

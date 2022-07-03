@@ -114,6 +114,9 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             R.id.nav_send -> {
                 handleSelection(R.string.nav_send_message)
             }
+            R.id.nav_count -> {
+                handleSelection(R.string.nav_count_message)
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
