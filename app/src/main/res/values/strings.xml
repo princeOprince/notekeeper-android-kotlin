@@ -20,4 +20,5 @@
     <string name="nav_share_message">Share</string>
     <string name="nav_send_message">Send</string>
     <string name="nav_count_message">How many</string>
+    <string name="nav_count_message_format">Notes : %1$d | Courses: %2$d</string>
 </resources>

@@ -115,7 +115,12 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 handleSelection(R.string.nav_send_message)
             }
             R.id.nav_count -> {
-                handleSelection(R.string.nav_count_message)
+                val message = getString(
+                    R.string.nav_count_message_format,
+                    DataManager.notes.size,
+                    DataManager.courses.size
+                )
+                Snackbar.make(listItems, message, Snackbar.LENGTH_LONG).show()
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
