@@ -25,7 +25,9 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     private val noteLayoutManager by lazy { LinearLayoutManager(this) }
 
-    private val courseLayoutManager by lazy { GridLayoutManager(this, 2) }
+    private val courseLayoutManager by lazy {
+        GridLayoutManager(this, resources.getInteger(R.integer.course_grid_span))
+    }
 
     private val noteRecyclerAdapter by lazy {
         NoteRecyclerAdapter(this, DataManager.notes)
