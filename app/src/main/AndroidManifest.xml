@@ -26,7 +26,7 @@
         </activity>
         <activity
             android:name=".NoteActivity"
-            android:label="Edit Note"
+            android:label="@string/note_activity_label"
             android:theme="@style/Theme.NoteKeeper.NoActionBar">
         </activity>
     </application>
