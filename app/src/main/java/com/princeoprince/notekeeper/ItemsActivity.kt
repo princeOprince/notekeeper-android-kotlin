@@ -109,17 +109,17 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 displayCourses()
             }
             R.id.nav_share -> {
-                handleSelection("Share")
+                handleSelection(R.string.nav_share_message)
             }
             R.id.nav_send -> {
-                handleSelection("Send")
+                handleSelection(R.string.nav_send_message)
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    private fun handleSelection(message: String) {
+    private fun handleSelection(message: Int) {
         Snackbar.make(listItems, message, Snackbar.LENGTH_LONG).show()
     }
 }
