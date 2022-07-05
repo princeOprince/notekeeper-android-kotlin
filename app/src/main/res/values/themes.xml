@@ -27,4 +27,8 @@
         <item name="android:textColor">@color/pluralsight_orange</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="NoteTitle" parent="@android:style/TextAppearance.Material.Small">
+        <item name="android:textColor">@color/pluralsight_plum</item>
+    </style>
 </resources>

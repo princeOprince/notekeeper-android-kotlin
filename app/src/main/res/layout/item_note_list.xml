@@ -54,6 +54,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/pluralsight_plum"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
