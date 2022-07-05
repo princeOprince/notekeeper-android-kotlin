@@ -39,4 +39,9 @@
     <style name="NoteTitle" parent="@android:style/TextAppearance.Material.Small">
         <item name="android:textColor">@color/pluralsight_plum</item>
     </style>
+
+    <style name="AddFAB" parent="Widget.Design.FloatingActionButton">
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="srcCompat">@drawable/ic_add_24</item>
+    </style>
 </resources>
