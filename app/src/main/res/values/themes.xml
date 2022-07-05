@@ -23,8 +23,16 @@
 
     <style name="Theme.NoteKeeper.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="CourseTitle" parent="@android:style/TextAppearance.Material.Medium">
+
+    <style name="BrandedText" parent="@android:style/TextAppearance.Material.Medium">
         <item name="android:textColor">@color/pluralsight_orange</item>
+    </style>
+
+    <style name="BrandedText.CourseTitle">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ModuleTitle" parent="BrandedText">
         <item name="android:textStyle">bold</item>
     </style>
 

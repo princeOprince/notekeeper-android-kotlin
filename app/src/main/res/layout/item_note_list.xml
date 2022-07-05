@@ -37,7 +37,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:text="TextView"
-                android:textAppearance="@style/CourseTitle"
+                android:textAppearance="@style/BrandedText.CourseTitle"
                 android:textSize="@dimen/course_name_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
