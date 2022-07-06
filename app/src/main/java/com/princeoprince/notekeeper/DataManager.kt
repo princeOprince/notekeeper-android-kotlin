@@ -6,11 +6,14 @@ object DataManager {
 
     init {
         initialiseCourses()
-        initialiseExampleNotes()
+        initialiseNotes()
     }
 
     fun addNote(course: CourseInfo, noteTitle: String, noteText: String): Int {
-        val note = NoteInfo(course, noteTitle, noteText)
+        return addNote(NoteInfo(course, noteTitle, noteText))
+    }
+
+    fun addNote(note: NoteInfo): Int {
         notes.add(note)
         return notes.lastIndex
     }
@@ -21,10 +24,6 @@ object DataManager {
                 return note
         }
         return null
-    }
-
-    fun initialiseNotes() {
-        initialiseExampleNotes()
     }
 
     private fun initialiseCourses() {
@@ -41,7 +40,7 @@ object DataManager {
         courses[course.courseId] = course
     }
 
-    private fun initialiseExampleNotes() {
+    fun initialiseNotes() {
         var course = courses["android_intents"]
         notes.add(NoteInfo(course!!, "Dynamic intent resolution",
             "Wow, intents allow components to be resolved at runtime"))
