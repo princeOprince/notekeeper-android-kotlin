@@ -27,8 +27,6 @@ class ItemsActivity :
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
 
-    val recentlyViewedNotes = ArrayList<NoteInfo>(MAX_RECENTLY_VIEW_NOTES)
-
     private val noteLayoutManager by lazy { LinearLayoutManager(this) }
 
     private val courseLayoutManager by lazy {
@@ -46,7 +44,7 @@ class ItemsActivity :
     }
 
     private val recentlyViewedNoteRecyclerAdapter by lazy {
-        val adapter = NoteRecyclerAdapter(this, recentlyViewedNotes)
+        val adapter = NoteRecyclerAdapter(this, viewModel.recentlyViewedNotes)
         adapter.setOnSelectedListener(this)
         adapter
     }
@@ -82,7 +80,7 @@ class ItemsActivity :
 
         navView.setNavigationItemSelectedListener(this)
 
-        displayNotes()
+        handleDisplaySelection(viewModel.navDrawerDisplaySelection)
 
     }
 
@@ -127,14 +125,11 @@ class ItemsActivity :
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.nav_notes -> {
-                displayNotes()
-            }
-            R.id.nav_courses -> {
-                displayCourses()
-            }
+            R.id.nav_notes,
+            R.id.nav_courses,
             R.id.nav_recent_notes -> {
-                displayRecentlyViewedNotes()
+                handleDisplaySelection(item.itemId)
+                viewModel.navDrawerDisplaySelection = item.itemId
             }
             R.id.nav_share -> {
                 handleSelection(R.string.nav_share_message)
@@ -155,29 +150,26 @@ class ItemsActivity :
         return true
     }
 
+    private fun handleDisplaySelection(itemId: Int) {
+        when(itemId) {
+            R.id.nav_notes -> {
+                displayNotes()
+            }
+            R.id.nav_courses -> {
+                displayCourses()
+            }
+            R.id.nav_recent_notes -> {
+                displayRecentlyViewedNotes()
+            }
+        }
+    }
+
     private fun handleSelection(message: Int) {
         Snackbar.make(listItems, message, Snackbar.LENGTH_LONG).show()
     }
 
     override fun onNoteSelected(note: NoteInfo) {
-        addToRecentlyViewedNotes(note)
+        viewModel.addToRecentlyViewedNotes(note)
     }
 
-    private fun addToRecentlyViewedNotes(note: NoteInfo) {
-        // Check if selection is already in the list
-        val existingIndex = recentlyViewedNotes.indexOf(note)
-        if (existingIndex == -1) {
-            // It isn't in the list...
-            // Add new one to the beginning of list and remove any beyond max
-            recentlyViewedNotes.add(0, note)
-            for (index in recentlyViewedNotes.lastIndex downTo MAX_RECENTLY_VIEW_NOTES)
-                recentlyViewedNotes.removeAt(index)
-        } else {
-            // It is in the list...
-            // Shift the ones above down the list and make it first member of the list
-            for (index in (existingIndex - 1) downTo 0)
-                recentlyViewedNotes[index + 1] = recentlyViewedNotes[index]
-            recentlyViewedNotes[0] = note
-        }
-    }
 }
