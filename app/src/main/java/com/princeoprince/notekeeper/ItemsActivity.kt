@@ -16,12 +16,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.princeoprince.notekeeper.databinding.ActivityItemsBinding
 
-class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class ItemsActivity :
+    AppCompatActivity(),
+    NavigationView.OnNavigationItemSelectedListener,
+    NoteRecyclerAdapter.OnNoteSelectedListener {
 
     private lateinit var binding: ActivityItemsBinding
     private lateinit var listItems: RecyclerView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
+
+    val recentlyViewedNotes = ArrayList<NoteInfo>(MAX_RECENTLY_VIEW_NOTES)
 
     private val noteLayoutManager by lazy { LinearLayoutManager(this) }
 
@@ -30,11 +35,19 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
     private val noteRecyclerAdapter by lazy {
-        NoteRecyclerAdapter(this, DataManager.notes)
+        val adapter = NoteRecyclerAdapter(this, DataManager.notes)
+        adapter.setOnSelectedListener(this)
+        adapter
     }
 
     private val courseRecyclerAdapter by lazy {
         CourseRecyclerAdapter(this, DataManager.courses.values.toList())
+    }
+
+    private val recentlyViewedNoteRecyclerAdapter by lazy {
+        val adapter = NoteRecyclerAdapter(this, recentlyViewedNotes)
+        adapter.setOnSelectedListener(this)
+        adapter
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +95,13 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         navView.menu.findItem(R.id.nav_courses).isChecked = true
     }
 
+    private fun displayRecentlyViewedNotes() {
+        listItems.layoutManager = noteLayoutManager
+        listItems.adapter = recentlyViewedNoteRecyclerAdapter
+
+        navView.menu.findItem(R.id.nav_recent_notes).isChecked = true
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.items, menu)
@@ -108,6 +128,9 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             R.id.nav_courses -> {
                 displayCourses()
             }
+            R.id.nav_recent_notes -> {
+                displayRecentlyViewedNotes()
+            }
             R.id.nav_share -> {
                 handleSelection(R.string.nav_share_message)
             }
@@ -129,5 +152,27 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     private fun handleSelection(message: Int) {
         Snackbar.make(listItems, message, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun onNoteSelected(note: NoteInfo) {
+        addToRecentlyViewedNotes(note)
+    }
+
+    private fun addToRecentlyViewedNotes(note: NoteInfo) {
+        // Check if selection is already in the list
+        val existingIndex = recentlyViewedNotes.indexOf(note)
+        if (existingIndex == -1) {
+            // It isn't in the list...
+            // Add new one to the beginning of list and remove any beyond max
+            recentlyViewedNotes.add(0, note)
+            for (index in recentlyViewedNotes.lastIndex downTo MAX_RECENTLY_VIEW_NOTES)
+                recentlyViewedNotes.removeAt(index)
+        } else {
+            // It is in the list...
+            // Shift the ones above down the list and make it first member of the list
+            for (index in (existingIndex - 1) downTo 0)
+                recentlyViewedNotes[index + 1] = recentlyViewedNotes[index]
+            recentlyViewedNotes[0] = note
+        }
     }
 }
