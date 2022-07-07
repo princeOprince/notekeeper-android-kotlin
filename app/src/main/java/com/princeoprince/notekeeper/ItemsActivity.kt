@@ -84,6 +84,15 @@ class ItemsActivity :
 
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        if (outState != null)
+            outState.putInt(
+                viewModel.navDrawerDisplaySelectionName, viewModel.navDrawerDisplaySelection
+            )
+    }
+
     private fun displayNotes() {
         listItems.layoutManager = noteLayoutManager
         listItems.adapter = noteRecyclerAdapter

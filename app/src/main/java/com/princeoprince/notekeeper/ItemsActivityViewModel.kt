@@ -3,9 +3,13 @@ package com.princeoprince.notekeeper
 import androidx.lifecycle.ViewModel
 
 class ItemsActivityViewModel: ViewModel() {
+
+    val navDrawerDisplaySelectionName =
+        "com.princeoprince.notekeeper.ItemsActivityViewModel.navDrawerDisplaySelection"
+
     var navDrawerDisplaySelection = R.id.nav_notes
 
-    val recentlyViewedNotes = ArrayList<NoteInfo>(MAX_RECENTLY_VIEW_NOTES)
+    val recentlyViewedNotes = ArrayList<NoteInfo>(MAX_RECENTLY_VIEWED_NOTES)
 
     fun addToRecentlyViewedNotes(note: NoteInfo) {
         // Check if selection is already in the list
@@ -14,7 +18,7 @@ class ItemsActivityViewModel: ViewModel() {
             // It isn't in the list...
             // Add new one to the beginning of list and remove any beyond max
             recentlyViewedNotes.add(0, note)
-            for (index in recentlyViewedNotes.lastIndex downTo MAX_RECENTLY_VIEW_NOTES)
+            for (index in recentlyViewedNotes.lastIndex downTo MAX_RECENTLY_VIEWED_NOTES)
                 recentlyViewedNotes.removeAt(index)
         } else {
             // It is in the list...
