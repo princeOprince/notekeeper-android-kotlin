@@ -66,6 +66,10 @@ class ItemsActivity :
 
         setSupportActionBar(toolbar)
 
+        if (savedInstanceState != null)
+            viewModel.navDrawerDisplaySelection =
+                savedInstanceState.getInt(viewModel.navDrawerDisplaySelectionName)
+
         binding.appBarItems.fab.setOnClickListener {
             val activityIntent = Intent(this, NoteActivity::class.java)
             startActivity(activityIntent)
@@ -87,10 +91,9 @@ class ItemsActivity :
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        if (outState != null)
-            outState.putInt(
-                viewModel.navDrawerDisplaySelectionName, viewModel.navDrawerDisplaySelection
-            )
+        outState.putInt(
+            viewModel.navDrawerDisplaySelectionName, viewModel.navDrawerDisplaySelection
+        )
     }
 
     private fun displayNotes() {
