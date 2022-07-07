@@ -1,5 +1,6 @@
 package com.princeoprince.notekeeper
 
+import android.os.Bundle
 import androidx.lifecycle.ViewModel
 
 class ItemsActivityViewModel: ViewModel() {
@@ -27,5 +28,13 @@ class ItemsActivityViewModel: ViewModel() {
                 recentlyViewedNotes[index + 1] = recentlyViewedNotes[index]
             recentlyViewedNotes[0] = note
         }
+    }
+
+    fun saveState(outState: Bundle) {
+        outState.putInt(navDrawerDisplaySelectionName, navDrawerDisplaySelection)
+    }
+
+    fun restoreState(savedInstanceState: Bundle) {
+        navDrawerDisplaySelection = savedInstanceState.getInt(navDrawerDisplaySelectionName)
     }
 }
