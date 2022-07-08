@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.princeoprince.notekeeper.NoteActivity">
     <item
+        android:id="@+id/action_get_together"
+        android:icon="@drawable/ic_people_white_24dp"
+        android:title="Get together"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_next"
         android:icon="@drawable/ic_baseline_forward_24"
         android:title="Next"
