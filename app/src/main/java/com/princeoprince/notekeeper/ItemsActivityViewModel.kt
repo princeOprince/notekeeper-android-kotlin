@@ -5,8 +5,12 @@ import androidx.lifecycle.ViewModel
 
 class ItemsActivityViewModel: ViewModel() {
 
-    val navDrawerDisplaySelectionName =
+    private val navDrawerDisplaySelectionName =
         "com.princeoprince.notekeeper.ItemsActivityViewModel.navDrawerDisplaySelection"
+    private val recentlyViewedNoteIdsName =
+        "com.princeoprince.notekeeper.ItemsActivityViewModel.recentlyViewedNoteIds"
+
+    var isNewlyCreated = true
 
     var navDrawerDisplaySelection = R.id.nav_notes
 
@@ -32,9 +36,14 @@ class ItemsActivityViewModel: ViewModel() {
 
     fun saveState(outState: Bundle) {
         outState.putInt(navDrawerDisplaySelectionName, navDrawerDisplaySelection)
+        val noteIds = DataManager.noteIdsAsIntArray(recentlyViewedNotes)
+        outState.putIntArray(recentlyViewedNoteIdsName, noteIds)
     }
 
     fun restoreState(savedInstanceState: Bundle) {
         navDrawerDisplaySelection = savedInstanceState.getInt(navDrawerDisplaySelectionName)
+        val noteIds = savedInstanceState.getIntArray(recentlyViewedNoteIdsName)
+        val noteList = DataManager.loadNotes(*noteIds!!)
+        recentlyViewedNotes.addAll(noteList)
     }
 }

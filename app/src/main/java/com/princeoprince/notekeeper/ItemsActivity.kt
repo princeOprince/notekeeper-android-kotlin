@@ -66,8 +66,10 @@ class ItemsActivity :
 
         setSupportActionBar(toolbar)
 
-        if (savedInstanceState != null)
+        if (viewModel.isNewlyCreated && savedInstanceState != null)
             viewModel.restoreState(savedInstanceState)
+
+        viewModel.isNewlyCreated = false
 
         binding.appBarItems.fab.setOnClickListener {
             val activityIntent = Intent(this, NoteActivity::class.java)
