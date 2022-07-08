@@ -14,9 +14,7 @@ class NoteActivity : AppCompatActivity() {
 
     private lateinit var mainBinding: ActivityMainBinding
 
-    val locManager = PseudoLocationManager(this) {
-        lat, lon -> Log.d(tag, "Location Callback Lat:$lat Lon:$lon")
-    }
+    val noteGetTogetherHelper = NoteGetTogetherHelper(this, lifecycle)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,16 +39,6 @@ class NoteActivity : AppCompatActivity() {
             createNewNote()
         }
         Log.d(tag, "onCreate")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        locManager.start()
-    }
-
-    override fun onStop() {
-        locManager.stop()
-        super.onStop()
     }
 
     private fun createNewNote() {
