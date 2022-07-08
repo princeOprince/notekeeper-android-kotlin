@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 
-class NoteGetTogetherHelper(val context: Context, private val lifecycle: Lifecycle): LifecycleObserver {
+class NoteGetTogetherHelper(context: Context, lifecycle: Lifecycle): LifecycleObserver {
 
     init {
         lifecycle.addObserver(this)
@@ -22,13 +22,23 @@ class NoteGetTogetherHelper(val context: Context, private val lifecycle: Lifecyc
         Log.d(tag, "Location Callback Lat:$currentLat Lon:$currentLon")
     }
 
+    val msgManager = PseudoMessagingManager(context)
+    var msgConnection: PseudoMessagingConnection? = null
+
+    fun sendMessage(note: NoteInfo) {
+        val getTogetherMessage =
+            "$currentLat | $currentLon | ${note.title} | ${note.course?.title}"
+    }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun startHandler() {
+        Log.d(tag, "startHandler")
         locManager.start()
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun stopHandler() {
+        Log.d(tag, "stopHandler")
         locManager.stop()
     }
 }
