@@ -6,7 +6,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 
-class NoteGetTogetherHelper(context: Context, lifecycle: Lifecycle): LifecycleObserver {
+class NoteGetTogetherHelper(
+    private val context: Context,
+    private val lifecycle: Lifecycle): LifecycleObserver {
 
     init {
         lifecycle.addObserver(this)
@@ -36,8 +38,11 @@ class NoteGetTogetherHelper(context: Context, lifecycle: Lifecycle): LifecycleOb
         Log.d(tag, "startHandler")
         locManager.start()
         msgManager.connect { connection ->
-            Log.d(tag, "Connection callback")
-            msgConnection = connection
+            Log.d(tag, "Connection callback - Lifecycle state:${lifecycle.currentState}")
+            if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED))
+                msgConnection = connection
+            else
+                connection.disconnect()
         }
     }
 
