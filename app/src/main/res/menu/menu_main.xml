@@ -6,12 +6,17 @@
         android:id="@+id/action_get_together"
         android:icon="@drawable/ic_people_white_24dp"
         android:title="Get together"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/action_cancel"
+        android:icon="@android:drawable/ic_menu_revert"
+        android:title="Cancel"
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_next"
         android:icon="@drawable/ic_baseline_forward_24"
         android:title="Next"
-        app:showAsAction="ifRoom|withText" />
+        app:showAsAction="always|collapseActionView" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
