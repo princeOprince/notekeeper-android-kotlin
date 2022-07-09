@@ -6,13 +6,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Spinner
 import com.princeoprince.notekeeper.databinding.ActivityMainBinding
 
 class NoteActivity : AppCompatActivity() {
     private val tag = this::class.simpleName
     private var notePosition = POSITION_NOT_SET
+    private var isNewNote = false
+    private var isCancelling = false
 
     private lateinit var mainBinding: ActivityMainBinding
+    private lateinit var spinnerCourses: Spinner
+    private lateinit var textNoteTitle: EditText
+    private lateinit var textNoteText: EditText
 
     val noteGetTogetherHelper = NoteGetTogetherHelper(this, lifecycle)
 
@@ -23,12 +30,16 @@ class NoteActivity : AppCompatActivity() {
         setContentView(mainBinding.root)
         setSupportActionBar(mainBinding.toolbar)
 
+        spinnerCourses = mainBinding.content.spinnerCourses
+        textNoteTitle = mainBinding.content.textNoteTitle
+        textNoteText = mainBinding.content.textNoteText
+
         val adapterCourses = ArrayAdapter(this,
                 android.R.layout.simple_spinner_item,
                 DataManager.courses.values.toList())
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        mainBinding.content.spinnerCourses.adapter = adapterCourses
+        spinnerCourses.adapter = adapterCourses
 
         notePosition = savedInstanceState?.getInt(NOTE_POSITION, POSITION_NOT_SET) ?:
             intent.getIntExtra(NOTE_POSITION, POSITION_NOT_SET)
@@ -42,6 +53,7 @@ class NoteActivity : AppCompatActivity() {
     }
 
     private fun createNewNote() {
+        isNewNote = true
         DataManager.notes.add(NoteInfo())
         notePosition = DataManager.notes.lastIndex
     }
@@ -54,11 +66,11 @@ class NoteActivity : AppCompatActivity() {
     private fun displayNote() {
         Log.i(tag, "Displaying note for position $notePosition")
         val note = DataManager.notes[notePosition]
-        mainBinding.content.textNoteTitle.setText(note.title)
-        mainBinding.content.textNoteText.setText(note.text)
+        textNoteTitle.setText(note.title)
+        textNoteText.setText(note.text)
 
         val coursePosition = DataManager.courses.values.indexOf(note.course)
-        mainBinding.content.spinnerCourses.setSelection(coursePosition)
+        spinnerCourses.setSelection(coursePosition)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -86,6 +98,7 @@ class NoteActivity : AppCompatActivity() {
     }
 
     private fun moveNext() {
+        saveNote()
         ++notePosition
         displayNote()
         invalidateOptionsMenu()
@@ -110,8 +123,8 @@ class NoteActivity : AppCompatActivity() {
 
     private fun saveNote() {
         val note = DataManager.notes[notePosition]
-        note.title = mainBinding.content.textNoteTitle.text.toString()
-        note.text = mainBinding.content.textNoteText.text.toString()
-        note.course = mainBinding.content.spinnerCourses.selectedItem as CourseInfo
+        note.title = textNoteTitle.text.toString()
+        note.text = textNoteText.text.toString()
+        note.course = spinnerCourses.selectedItem as CourseInfo
     }
 }
