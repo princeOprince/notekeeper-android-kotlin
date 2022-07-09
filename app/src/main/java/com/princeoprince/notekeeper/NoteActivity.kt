@@ -93,6 +93,11 @@ class NoteActivity : AppCompatActivity() {
                 noteGetTogetherHelper.sendMessage(DataManager.loadNote(notePosition))
                 true
             }
+            R.id.action_cancel -> {
+                isCancelling = true
+                finish()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -117,7 +122,13 @@ class NoteActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        saveNote()
+        when {
+            isCancelling -> {
+                if (isNewNote)
+                    DataManager.notes.removeAt(notePosition)
+            }
+            else -> saveNote()
+        }
         Log.d(tag, "onPause")
     }
 
