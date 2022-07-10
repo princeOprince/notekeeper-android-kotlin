@@ -14,6 +14,8 @@ class NoteGetTogetherHelper(
         lifecycle.addObserver(this)
     }
 
+    var location = "on"
+
     private val tag = this::class.simpleName
     private var currentLat = 0.0
     private var currentLon = 0.0
@@ -24,8 +26,8 @@ class NoteGetTogetherHelper(
         Log.d(tag, "Location Callback Lat:$currentLat Lon:$currentLon")
     }
 
-    val msgManager = PseudoMessagingManager(context)
-    var msgConnection: PseudoMessagingConnection? = null
+    private val msgManager = PseudoMessagingManager(context)
+    private var msgConnection: PseudoMessagingConnection? = null
 
     fun sendMessage(note: NoteInfo) {
         val getTogetherMessage =
@@ -51,5 +53,15 @@ class NoteGetTogetherHelper(
         Log.d(tag, "stopHandler")
         locManager.stop()
         msgConnection?.disconnect()
+    }
+
+    fun turnOffLocationCallback() {
+        locManager.stop()
+        location = "off"
+    }
+
+    fun turnOnLocationCallback() {
+        locManager.start()
+        location = "on"
     }
 }

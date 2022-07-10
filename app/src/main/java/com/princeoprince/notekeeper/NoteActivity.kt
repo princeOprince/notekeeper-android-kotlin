@@ -98,6 +98,24 @@ class NoteActivity : AppCompatActivity() {
                 finish()
                 true
             }
+            R.id.action_reminder -> {
+                ReminderNotification.notify(
+                    this,
+                    "Reminder",
+                    "${DataManager.notes[notePosition]}",
+                     notePosition)
+                true
+            }
+            R.id.action_location -> {
+                if (noteGetTogetherHelper.location == "on") {
+                    noteGetTogetherHelper.turnOffLocationCallback()
+                    item.title = "Turn on location"
+                } else {
+                    noteGetTogetherHelper.turnOnLocationCallback()
+                    item.title = "Turn off location"
+                }
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
