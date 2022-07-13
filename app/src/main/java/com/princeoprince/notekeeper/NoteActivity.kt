@@ -102,8 +102,9 @@ class NoteActivity : AppCompatActivity() {
                 ReminderNotification.notify(
                     this,
                     "Reminder",
-                    "${DataManager.notes[notePosition]}",
-                     notePosition)
+                    getString(R.string.reminder_body, DataManager.notes[notePosition].title),
+                     notePosition
+                )
                 true
             }
             R.id.action_location -> {
