@@ -27,13 +27,20 @@ object ReminderNotification {
         "Share Note Reminder"),
             PendingIntent.FLAG_UPDATE_CURRENT
         )
+//
+//        val intent = Intent(context, NoteActivity::class.java)
+//        intent.putExtra(NOTE_POSITION, notePosition)
+//
+//        val pendingIntent = TaskStackBuilder.create(context)
+//            .addNextIntentWithParentStack(intent)
+//            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val intent = Intent(context, NoteActivity::class.java)
-        intent.putExtra(NOTE_POSITION, notePosition)
+        val intent = NoteQuickViewActivity.getIntent(context, notePosition)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-        val pendingIntent = TaskStackBuilder.create(context)
-            .addNextIntentWithParentStack(intent)
-            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getActivity(
+            context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
         val builder = NotificationCompat.Builder(context, REMINDER_CHANNEL)
             .setDefaults(Notification.DEFAULT_ALL)

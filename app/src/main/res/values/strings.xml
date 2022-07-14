@@ -23,4 +23,7 @@
     <string name="nav_count_message_format">Notes : %1$d | Courses: %2$d</string>
 
     <string name="reminder_body">Review %1$s</string>
+    <string name="note_label">Note</string>
+    <string name="delete">Delete</string>
+    <string name="note_load_error">Error loading note</string>
 </resources>

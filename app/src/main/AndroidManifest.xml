@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteKeeper">
+
+        <activity
+            android:name=".NoteQuickViewActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"/>
+
         <activity
             android:name=".ItemsActivity"
             android:label="@string/app_name"
@@ -19,17 +26,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".NoteListActivity"
             android:label="NoteKeeper"
-            android:theme="@style/Theme.NoteKeeper.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.NoteKeeper.NoActionBar" />
+
         <activity
             android:name=".NoteActivity"
             android:label="@string/note_activity_label"
-            android:theme="@style/Theme.NoteKeeper.NoActionBar"
-            android:parentActivityName=".ItemsActivity">
-        </activity>
+            android:parentActivityName=".ItemsActivity"
+            android:theme="@style/Theme.NoteKeeper.NoActionBar" />
     </application>
 
 </manifest>

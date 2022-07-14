@@ -10,4 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="pluralsight_orange">#FFF05A28</color>
     <color name="pluralsight_plum">#FFA7305D</color>
+    <color name="darkOrange">#b9451e</color>
+    <color name="lightGrey">#686868</color>
 </resources>
