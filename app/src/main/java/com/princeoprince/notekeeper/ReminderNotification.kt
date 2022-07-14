@@ -15,7 +15,7 @@ object ReminderNotification {
 
     const val REMINDER_CHANNEL = "reminders"
 
-    fun notify(context: Context, titleText: String, noteText: String, number: Int) {
+    fun notify(context: Context, titleText: String, noteText: String, notePosition: Int) {
 
         val shareIntent = PendingIntent.getActivity(
             context,
@@ -26,6 +26,9 @@ object ReminderNotification {
         "Share Note Reminder"),
             PendingIntent.FLAG_UPDATE_CURRENT
         )
+
+        val intent = Intent(context, NoteActivity::class.java)
+        intent.putExtra(NOTE_POSITION, notePosition)
 
         val builder = NotificationCompat.Builder(context, REMINDER_CHANNEL)
             .setDefaults(Notification.DEFAULT_ALL)
@@ -38,7 +41,7 @@ object ReminderNotification {
                 PendingIntent.getActivity(
                     context,
                     0,
-                    Intent(context, ItemsActivity::class.java),
+                    intent,
                     PendingIntent.FLAG_UPDATE_CURRENT
                 )
             )
