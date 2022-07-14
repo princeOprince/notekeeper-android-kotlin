@@ -4,6 +4,7 @@ import android.annotation.TargetApi
 import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -30,6 +31,10 @@ object ReminderNotification {
         val intent = Intent(context, NoteActivity::class.java)
         intent.putExtra(NOTE_POSITION, notePosition)
 
+        val pendingIntent = TaskStackBuilder.create(context)
+            .addNextIntentWithParentStack(intent)
+            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+
         val builder = NotificationCompat.Builder(context, REMINDER_CHANNEL)
             .setDefaults(Notification.DEFAULT_ALL)
             .setSmallIcon(R.drawable.ic_stat_reminder)
@@ -37,14 +42,7 @@ object ReminderNotification {
             .setContentText(noteText)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setTicker(titleText)
-            .setContentIntent(
-                PendingIntent.getActivity(
-                    context,
-                    0,
-                    intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
-                )
-            )
+            .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .addAction(android.R.drawable.ic_menu_share, "Share", shareIntent)
 
