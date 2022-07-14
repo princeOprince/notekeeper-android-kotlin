@@ -10,30 +10,20 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 
-object ReminderNotification {
+object QuickViewNotification {
 
-    private const val NOTIFICATION_TAG = "Reminder"
+    private const val NOTIFICATION_TAG = "Quick View Notification"
 
-    const val REMINDER_CHANNEL = "reminders"
+    const val REMINDER_CHANNEL = "Quick View"
 
     fun notify(context: Context, titleText: String, noteText: String, notePosition: Int) {
 
-        val shareIntent = PendingIntent.getActivity(
-            context,
-            0,
-            Intent.createChooser(Intent(Intent.ACTION_SEND)
-                .setType("text/plain")
-                .putExtra(Intent.EXTRA_TEXT, noteText),
-        "Share Note Reminder"),
-            PendingIntent.FLAG_UPDATE_CURRENT
+        val intent = NoteQuickViewActivity.getIntent(context, notePosition)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+        val pendingIntent = PendingIntent.getActivity(
+            context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
         )
-
-        val intent = Intent(context, NoteActivity::class.java)
-        intent.putExtra(NOTE_POSITION, notePosition)
-
-        val pendingIntent = TaskStackBuilder.create(context)
-            .addNextIntentWithParentStack(intent)
-            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val builder = NotificationCompat.Builder(context, REMINDER_CHANNEL)
             .setDefaults(Notification.DEFAULT_ALL)
@@ -44,7 +34,6 @@ object ReminderNotification {
             .setTicker(titleText)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
-            .addAction(android.R.drawable.ic_menu_share, "Share", shareIntent)
 
         notify(context, builder.build())
     }
@@ -52,10 +41,5 @@ object ReminderNotification {
     private fun notify(context: Context, notification: Notification) {
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         nm.notify(NOTIFICATION_TAG, 0, notification)
-    }
-
-    fun cancel(context: Context) {
-        val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        nm.cancel(NOTIFICATION_TAG, 0)
     }
 }

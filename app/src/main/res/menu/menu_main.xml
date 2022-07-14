@@ -28,6 +28,10 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_quick_view"
+        android:title="@string/action_quick_view"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_location"
         android:title="Turn off location"
         app:showAsAction="never" />

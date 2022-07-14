@@ -99,13 +99,20 @@ class ItemsActivity :
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-            val channel = NotificationChannel(
+            val reminderChannel = NotificationChannel(
                 ReminderNotification.REMINDER_CHANNEL,
                 "Note Reminders",
                 NotificationManager.IMPORTANCE_DEFAULT
             )
 
-            nm.createNotificationChannel(channel)
+            val quickViewChannel = NotificationChannel(
+                QuickViewNotification.REMINDER_CHANNEL,
+                "Note Quick View",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+
+            nm.createNotificationChannel(reminderChannel)
+            nm.createNotificationChannel(quickViewChannel)
         }
     }
 

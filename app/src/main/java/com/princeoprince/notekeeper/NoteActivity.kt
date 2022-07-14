@@ -107,6 +107,15 @@ class NoteActivity : AppCompatActivity() {
                 )
                 true
             }
+            R.id.action_quick_view -> {
+                QuickViewNotification.notify(
+                    this,
+                    "Quick View Reminder",
+                    getString(R.string.reminder_body, DataManager.notes[notePosition].title),
+                     notePosition
+                )
+                true
+            }
             R.id.action_location -> {
                 if (noteGetTogetherHelper.location == "on") {
                     noteGetTogetherHelper.turnOffLocationCallback()
