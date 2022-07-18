@@ -49,16 +49,14 @@
         app:layout_constraintTop_toBottomOf="@+id/noteLabel"
         tools:text="Note body contents" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/deleteButton"
         style="@style/PrimaryButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="14dp"
-        app:background="@color/pluralsight_orange"
         android:text="@string/delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:background="@drawable/rounded_corner_button" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
