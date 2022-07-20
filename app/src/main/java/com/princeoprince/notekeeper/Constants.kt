@@ -6,3 +6,5 @@ const val MAX_RECENTLY_VIEWED_NOTES = 5
 
 const val BIG_TEXT_CHANNEL = "Big Text"
 const val BIG_TEXT_NAME = "Big Text Style"
+const val BIG_PICTURE_CHANNEL = "Big Picture"
+const val BIG_PICTURE_NAME = "Big Picture Style"

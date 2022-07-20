@@ -117,9 +117,16 @@ class ItemsActivity :
                 NotificationManager.IMPORTANCE_DEFAULT
             )
 
+            val bigPictureChannel = NotificationChannel(
+                BIG_PICTURE_CHANNEL,
+                BIG_PICTURE_NAME,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+
             nm.createNotificationChannel(reminderChannel)
             nm.createNotificationChannel(quickViewChannel)
             nm.createNotificationChannel(bigTextChannel)
+            nm.createNotificationChannel(bigPictureChannel)
         }
     }
 

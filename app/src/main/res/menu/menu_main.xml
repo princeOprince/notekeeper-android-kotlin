@@ -38,6 +38,10 @@
                 android:id="@+id/action_big_text"
                 android:title="@string/action_big_text"
                 app:showAsAction="never" />
+            <item
+                android:id="@+id/action_big_picture"
+                android:title="@string/action_big_picture"
+                app:showAsAction="never" />
         </menu>
     </item>
     <item
