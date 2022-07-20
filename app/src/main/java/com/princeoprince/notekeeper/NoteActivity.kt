@@ -116,6 +116,13 @@ class NoteActivity : AppCompatActivity() {
                 )
                 true
             }
+            R.id.action_big_text -> {
+                BigTextNotification.notify(
+                    this,
+                     notePosition
+                )
+                true
+            }
             R.id.action_location -> {
                 if (noteGetTogetherHelper.location == "on") {
                     noteGetTogetherHelper.turnOffLocationCallback()

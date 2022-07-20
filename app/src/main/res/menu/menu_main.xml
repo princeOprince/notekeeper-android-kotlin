@@ -34,6 +34,10 @@
                 android:id="@+id/action_quick_view"
                 android:title="@string/action_quick_view"
                 app:showAsAction="never" />
+            <item
+                android:id="@+id/action_big_text"
+                android:title="@string/action_big_text"
+                app:showAsAction="never" />
         </menu>
     </item>
     <item
