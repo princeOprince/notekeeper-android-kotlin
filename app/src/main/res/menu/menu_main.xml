@@ -28,9 +28,14 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_quick_view"
-        android:title="@string/action_quick_view"
-        app:showAsAction="never" />
+        android:title="@string/action_notificatons">
+        <menu>
+            <item
+                android:id="@+id/action_quick_view"
+                android:title="@string/action_quick_view"
+                app:showAsAction="never" />
+        </menu>
+    </item>
     <item
         android:id="@+id/action_location"
         android:title="@string/action_turn_off_location"
