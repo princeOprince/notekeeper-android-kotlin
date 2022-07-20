@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">NoteKeeper</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_quick_view">Quick view notification</string>
 
     <string name="title_activity_main2">MainActivity</string>
     <string name="title_activity_note_list">NoteListActivity</string>
@@ -27,4 +25,13 @@
     <string name="note_label">Note</string>
     <string name="delete">Delete</string>
     <string name="note_load_error">Error loading note</string>
+
+    <!--    Menu Actions -->
+    <string name="action_settings">Settings</string>
+    <string name="action_quick_view">Quick view notification</string>
+    <string name="action_reminder">Reminder</string>
+    <string name="action_get_together">Get together</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_next">Next</string>
+    <string name="action_turn_off_location">Turn off location</string>
 </resources>
