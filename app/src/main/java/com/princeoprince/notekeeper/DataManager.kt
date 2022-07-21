@@ -1,5 +1,7 @@
 package com.princeoprince.notekeeper
 
+import androidx.core.app.Person
+
 object DataManager {
     val courses = HashMap<String, CourseInfo>()
     val notes = ArrayList<NoteInfo>()
@@ -67,28 +69,105 @@ object DataManager {
     }
 
     fun initialiseNotes() {
-        var course = courses["android_intents"]
-        notes.add(NoteInfo(course!!, "Dynamic intent resolution",
-            "Wow, intents allow components to be resolved at runtime"))
-        notes.add(NoteInfo(course, "Delegating intents",
-            "PendingIntents are powerful; they delegate much more than just a component invocation"))
+        val sender1 = Person.Builder().setName("Jeff").build()
+        val sender2 = Person.Builder().setName("Dave").build()
+        val sender3 = Person.Builder().setName("Lucy").build()
 
-        course = courses["android_async"]
-        notes.add(NoteInfo(course!!, "Service default threads",
-            "Did you know that by default an Android Service will tie up the UI thread?"))
-        notes.add(NoteInfo(course, "Long running operations",
-            "Foreground Services can be tied to a notification icon"))
+        var course = courses["android_intents"]!!
 
-        course = courses["java_lang"]
-        notes.add(NoteInfo(course!!, "Parameters",
-            "Leverage variable-length parameter lists"))
-        notes.add(NoteInfo(course, "Anonymous classes",
-            "Anonymous classes simplify implementing one-use types"))
+        var note = NoteInfo(course, "Dynamic intent resolution",
+            "Wow, intents allow components to be resolved at runtime")
+        note.comments.add(
+            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis()))
+        note.comments.add(
+            NoteComment(sender2, "We should review this",
+                System.currentTimeMillis() - 5000))
+        note.comments.add(
+            NoteComment(sender3, "This is good to know",
+                System.currentTimeMillis() - 10000))
+        notes.add(note)
 
-        course = courses["java_core"]
-        notes.add(NoteInfo(course!!, "Compiler options",
-            "The -jar option isn't compatible with with the -cp option"))
-        notes.add(NoteInfo(course, "Serialization",
-            "Remember to include SerialVersionUID to assure version compatibility"))
+        note = NoteInfo(course,
+            "Delegating intents",
+            "PendingIntents are powerful; they delegate much more than just a component invocation")
+        note.comments.add(
+            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis()))
+        note.comments.add(
+            NoteComment(sender2, "We should review this",
+                System.currentTimeMillis() - 5000))
+        note.comments.add(
+            NoteComment(sender3, "This is good to know",
+                System.currentTimeMillis() - 10000))
+        notes.add(note)
+
+        course = courses["android_async"]!!
+
+        note = NoteInfo(course, "Service default threads",
+            "Did you know that by default an Android Service will tie up the UI thread?")
+        note.comments.add(
+            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis()))
+        note.comments.add(
+            NoteComment(sender2, "We should review this",
+                System.currentTimeMillis() - 5000))
+        note.comments.add(
+            NoteComment(sender3, "This is good to know",
+                System.currentTimeMillis() - 10000))
+        notes.add(note)
+
+        note = NoteInfo(course, "Long running operations",
+            "Foreground Services can be tied to a notification icon")
+        note.comments.add(
+            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis()))
+        note.comments.add(
+            NoteComment(sender2, "We should review this",
+                System.currentTimeMillis() - 5000))
+        note.comments.add(
+            NoteComment(sender3, "This is good to know",
+                System.currentTimeMillis() - 10000))
+        notes.add(note)
+
+        course = courses["java_lang"]!!
+
+        note = NoteInfo(course, "Parameters",
+            "Leverage variable-length parameter lists")
+        note.comments.add(NoteComment(sender1, "Excellent Point!",
+            System.currentTimeMillis()))
+        note.comments.add(NoteComment(sender2, "We should review this",
+            System.currentTimeMillis() - 5000))
+        note.comments.add(NoteComment(sender3, "This is good to know",
+            System.currentTimeMillis() - 10000))
+        notes.add(note)
+
+        note = NoteInfo(course, "Anonymous classes",
+            "Anonymous classes simplify implementing one-use types")
+        note.comments.add(NoteComment(sender1, "Excellent Point!",
+            System.currentTimeMillis()))
+        note.comments.add(NoteComment(sender2, "We should review this",
+            System.currentTimeMillis() - 5000))
+        note.comments.add(NoteComment(sender3, "This is good to know",
+            System.currentTimeMillis() - 10000))
+        notes.add(note)
+
+        course = courses["java_core"]!!
+
+        note = NoteInfo(course, "Compiler options",
+            "The -jar option isn't compatible with with the -cp option")
+        note.comments.add(NoteComment(sender1, "Excellent Point!",
+            System.currentTimeMillis()))
+        note.comments.add(NoteComment(sender2, "We should review this",
+            System.currentTimeMillis() - 5000))
+        note.comments.add(NoteComment(sender3, "This is good to know",
+            System.currentTimeMillis() - 10000))
+        notes.add(note)
+
+        note = NoteInfo(course, "Serialization",
+            "Remember to include SerialVersionUID to assure version compatibility")
+        note.comments.add(NoteComment(sender1, "Excellent Point!",
+            System.currentTimeMillis()))
+        note.comments.add(NoteComment(sender2, "We should review this",
+            System.currentTimeMillis() - 5000))
+        note.comments.add(NoteComment(sender3, "This is good to know",
+            System.currentTimeMillis() - 10000))
+        notes.add(note)
     }
 }
