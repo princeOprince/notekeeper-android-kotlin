@@ -32,6 +32,7 @@
     <string name="action_big_text">Big Text Style</string>
     <string name="action_big_picture">Big Picture Style</string>
     <string name="action_inbox_style">Inbox Style</string>
+    <string name="action_messaging_style">Messaging Style</string>
     <string name="action_reminder">Reminder</string>
     <string name="action_get_together">Get together</string>
     <string name="action_cancel">Cancel</string>
@@ -43,6 +44,7 @@
         Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
         Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
     </string>
+    <string name="comments">Comments</string>
 
 
 </resources>

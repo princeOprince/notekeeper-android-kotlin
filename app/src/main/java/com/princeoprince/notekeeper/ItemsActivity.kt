@@ -122,9 +122,16 @@ class ItemsActivity :
                 BIG_PICTURE_NAME,
                 NotificationManager.IMPORTANCE_DEFAULT
             )
+
             val inboxStyleChannel = NotificationChannel(
                 INBOX_STYLE_CHANNEL,
                 INBOX_STYLE_NAME,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+
+            val messagingStyleChannel = NotificationChannel(
+                MESSAGING_STYLE_CHANNEL,
+                MESSAGING_STYLE_NAME,
                 NotificationManager.IMPORTANCE_DEFAULT
             )
 
@@ -133,6 +140,7 @@ class ItemsActivity :
             nm.createNotificationChannel(bigTextChannel)
             nm.createNotificationChannel(bigPictureChannel)
             nm.createNotificationChannel(inboxStyleChannel)
+            nm.createNotificationChannel(messagingStyleChannel)
         }
     }
 

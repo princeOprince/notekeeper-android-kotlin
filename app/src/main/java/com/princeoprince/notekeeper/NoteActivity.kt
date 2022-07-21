@@ -1,6 +1,7 @@
 package com.princeoprince.notekeeper
 
 import android.app.Notification
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.princeoprince.notekeeper.databinding.ActivityMainBinding
 
 class NoteActivity : AppCompatActivity() {
@@ -51,6 +53,16 @@ class NoteActivity : AppCompatActivity() {
             createNewNote()
         }
         Log.d(tag, "onCreate")
+
+        val commentsAdapter = CommentRecyclerAdapter(this, DataManager.notes[notePosition])
+        mainBinding.content.commentsList?.layoutManager = LinearLayoutManager(this)
+        mainBinding.content.commentsList?.adapter = commentsAdapter
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        notePosition = intent?.getIntExtra(NOTE_POSITION, POSITION_NOT_SET) ?: POSITION_NOT_SET
     }
 
     private fun createNewNote() {
@@ -134,6 +146,14 @@ class NoteActivity : AppCompatActivity() {
             R.id.action_inbox_style -> {
                 InboxStyleNotification.notify(
                     this,
+                     notePosition
+                )
+                true
+            }
+            R.id.action_messaging_style -> {
+                MessagingStyleNotification.notify(
+                    this,
+                    DataManager.notes[notePosition],
                      notePosition
                 )
                 true
