@@ -42,6 +42,10 @@
                 android:id="@+id/action_big_picture"
                 android:title="@string/action_big_picture"
                 app:showAsAction="never" />
+            <item
+                android:id="@+id/action_inbox_style"
+                android:title="@string/action_inbox_style"
+                app:showAsAction="never" />
         </menu>
     </item>
     <item

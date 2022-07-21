@@ -1,5 +1,6 @@
 package com.princeoprince.notekeeper
 
+import android.app.Notification
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -125,6 +126,13 @@ class NoteActivity : AppCompatActivity() {
             }
             R.id.action_big_picture -> {
                 BigPictureNotification.notify(
+                    this,
+                     notePosition
+                )
+                true
+            }
+            R.id.action_inbox_style -> {
+                InboxStyleNotification.notify(
                     this,
                      notePosition
                 )

@@ -11,10 +11,10 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.core.app.NotificationCompat
 
-object BigPictureNotification {
+object InboxStyleNotification {
 
-    private const val NOTIFICATION_TAG = "Big Picture Style"
-    private const val NOTIFICATION_ID = 3
+    private const val NOTIFICATION_TAG = "Inbox Style"
+    private const val NOTIFICATION_ID = 4
 
     fun notify(context: Context, notePosition: Int) {
 
@@ -25,21 +25,22 @@ object BigPictureNotification {
             .addNextIntentWithParentStack(intent)
             .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val builder = NotificationCompat.Builder(context, BIG_PICTURE_CHANNEL)
+        val builder = NotificationCompat.Builder(context, INBOX_STYLE_CHANNEL)
             .setDefaults(Notification.DEFAULT_ALL)
             .setSmallIcon(R.drawable.ic_stat_reminder)
-            .setContentTitle("Collapsed Title")
-            .setContentText("Collapsed Body Text")
+            .setContentTitle("5 New Messages")
+            .setContentText("Review your messages")
             .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.logo))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setTicker(BIG_TEXT_NAME)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
-            .setStyle(NotificationCompat.BigPictureStyle()
-                .setBigContentTitle("Big Content Title")
-                .setSummaryText("Summary Text")
-                .bigPicture(BitmapFactory.decodeResource(context.resources, R.drawable.logo))
-                .bigLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.example))
+            .setStyle(NotificationCompat.InboxStyle()
+                .addLine("Your taxes are due")
+                .addLine("Free cake this tuesday")
+                .addLine("Your order has shipped")
+                .addLine("Your pluralsight subscription")
+                .addLine("Howdy!")
             )
 
         notify(context, builder.build())
