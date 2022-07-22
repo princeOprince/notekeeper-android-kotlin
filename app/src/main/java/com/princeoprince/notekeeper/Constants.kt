@@ -12,3 +12,5 @@ const val INBOX_STYLE_CHANNEL = "Inbox"
 const val INBOX_STYLE_NAME = "Inbox Style"
 const val MESSAGING_STYLE_CHANNEL = "Messaging"
 const val MESSAGING_STYLE_NAME = "Messaging Style"
+
+const val KEY_TEXT_REPLY = "keyTextReply"

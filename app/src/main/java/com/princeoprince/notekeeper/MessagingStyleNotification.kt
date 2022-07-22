@@ -9,6 +9,8 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.core.app.NotificationCompat
 import androidx.core.app.Person
+import androidx.core.app.RemoteInput
+import androidx.core.content.ContextCompat
 
 object MessagingStyleNotification {
 
@@ -44,6 +46,22 @@ object MessagingStyleNotification {
             note.comments[2].sender
         )
 
+        val remoteInput = RemoteInput.Builder(KEY_TEXT_REPLY)
+            .setLabel("Add Note")
+            .build()
+
+        val replyIntent = Intent(context, NotificationBroadcastReceiver::class.java).also {
+            it.putExtra(NOTE_POSITION, notePosition)
+        }
+
+        val replyPendingIntent = PendingIntent.getBroadcast(
+            context, 100, replyIntent, PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val replyAction = NotificationCompat.Action.Builder(
+            android.R.drawable.ic_menu_send, "Add Note", replyPendingIntent
+        ).addRemoteInput(remoteInput).build()
+
         val builder = NotificationCompat.Builder(context, MESSAGING_STYLE_CHANNEL)
             .setDefaults(Notification.DEFAULT_ALL)
             .setSmallIcon(R.drawable.ic_stat_reminder)
@@ -53,12 +71,15 @@ object MessagingStyleNotification {
             .setTicker("Comments about ${note.title}")
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
+            .setColor(ContextCompat.getColor(context, R.color.darkOrange))
+            .setColorized(true)
+            .setOnlyAlertOnce(true)
             .setStyle(NotificationCompat.MessagingStyle(sender)
                 .setConversationTitle(note.title)
                 .addMessage(message3)
                 .addMessage(message2)
-                .addMessage(message1)
-            )
+                .addMessage(message1))
+            .addAction(replyAction)
 
         notify(context, builder.build())
     }
