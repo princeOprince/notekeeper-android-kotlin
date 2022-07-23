@@ -1,6 +1,8 @@
 package com.princeoprince.notekeeper
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 
@@ -23,6 +25,11 @@ class AppWidgetRemoteViewsFactory(val context: Context)  :
     override fun getViewAt(position: Int): RemoteViews {
         val rv = RemoteViews(context.packageName, R.layout.item_note_widget)
         rv.setTextViewText(R.id.note_title, DataManager.notes[position].title)
+
+        val extras = Bundle()
+        extras.putInt(NOTE_POSITION, position)
+        val fillInIntent = Intent().apply { putExtras(extras) }
+        rv.setOnClickFillInIntent(R.id.widget_item, fillInIntent)
 
         return rv
     }
