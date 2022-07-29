@@ -46,6 +46,31 @@
         android:importantForAutofill="no" />
 
     <TextView
+        android:id="@+id/colorSelectorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/note_color"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/textNoteText"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.princeoprince.notekeeper.ColorSelector
+        android:id="@+id/colorSelector"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/colorSelectorLabel" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="24dp"
+        android:layout_weight="1"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toBottomOf="@+id/colorSelector" />
+
+    <TextView
         android:id="@+id/commentLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,7 +79,7 @@
         android:textSize="12sp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/textNoteText"
+        app:layout_constraintTop_toBottomOf="@id/divider"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView

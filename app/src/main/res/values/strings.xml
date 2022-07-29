@@ -47,4 +47,9 @@
     <string name="comments">Comments</string>
     <string name="add_widget">Add widget</string>
     <string name="notes">NOTES</string>
+    <string name="enabled">Enabled</string>
+    <string name="note_color">Note Color</string>
+    <string name="go_left">Go Left</string>
+    <string name="go_right">Go Right</string>
+
 </resources>
