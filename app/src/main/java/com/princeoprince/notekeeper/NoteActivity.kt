@@ -2,11 +2,13 @@ package com.princeoprince.notekeeper
 
 import android.app.Notification
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
@@ -18,11 +20,13 @@ class NoteActivity : AppCompatActivity() {
     private var notePosition = POSITION_NOT_SET
     private var isNewNote = false
     private var isCancelling = false
+    private var noteColor: Int = Color.TRANSPARENT
 
     private lateinit var mainBinding: ActivityMainBinding
     private lateinit var spinnerCourses: Spinner
     private lateinit var textNoteTitle: EditText
     private lateinit var textNoteText: EditText
+    private lateinit var colorSelector: ColorSelector
 
     val noteGetTogetherHelper = NoteGetTogetherHelper(this, lifecycle)
 
@@ -36,6 +40,7 @@ class NoteActivity : AppCompatActivity() {
         spinnerCourses = mainBinding.content.spinnerCourses
         textNoteTitle = mainBinding.content.textNoteTitle
         textNoteText = mainBinding.content.textNoteText
+        colorSelector = mainBinding.content.colorSelector!!
 
         val adapterCourses = ArrayAdapter(this,
                 android.R.layout.simple_spinner_item,
@@ -57,6 +62,14 @@ class NoteActivity : AppCompatActivity() {
         val commentsAdapter = CommentRecyclerAdapter(this, DataManager.notes[notePosition])
         mainBinding.content.commentsList?.layoutManager = LinearLayoutManager(this)
         mainBinding.content.commentsList?.adapter = commentsAdapter
+
+        colorSelector.setColorSelectListener(
+            object: ColorSelector.ColorSelectListener {
+                override fun onColorSelected(color: Int) {
+                    noteColor = color
+                }
+            }
+        )
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -81,6 +94,9 @@ class NoteActivity : AppCompatActivity() {
         val note = DataManager.notes[notePosition]
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
+        noteColor = note.color
+        colorSelector.setSelectedColor(note.color)
+
 
         val coursePosition = DataManager.courses.values.indexOf(note.course)
         spinnerCourses.setSelection(coursePosition)
@@ -207,6 +223,7 @@ class NoteActivity : AppCompatActivity() {
         note.title = textNoteTitle.text.toString()
         note.text = textNoteText.text.toString()
         note.course = spinnerCourses.selectedItem as CourseInfo
+        note.color = this.noteColor
         NoteKeeperAppWidget.sendRefreshBroadcast(this)
     }
 }

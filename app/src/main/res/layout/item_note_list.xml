@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
-        app:contentPadding="16dp" >
+        app:cardUseCompatPadding="true" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -21,13 +20,15 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_assignment_black_24"
-                app:tint="@color/pluralsight_orange" />
+                app:tint="@color/pluralsight_orange"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:id="@+id/textCourse"
@@ -35,8 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:text="TextView"
+                android:layout_marginEnd="32dp"
+                tools:text="TextView"
                 android:textAppearance="@style/BrandedText.CourseTitle"
                 android:textSize="@dimen/course_name_size"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -50,9 +51,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="8dp"
-                android:text="TextView"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
+                tools:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/pluralsight_plum"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -60,14 +61,14 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/textCourse" />
 
-            <ImageView
-                android:id="@+id/shape"
-                android:layout_width="4dp"
+            <View
+                android:id="@+id/noteColor"
+                android:layout_width="24dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/orange_rectangle" />
+                tools:background="@color/pluralsight_orange"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

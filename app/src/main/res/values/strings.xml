@@ -51,5 +51,6 @@
     <string name="note_color">Note Color</string>
     <string name="go_left">Go Left</string>
     <string name="go_right">Go Right</string>
+    <string name="todo" />
 
 </resources>
