@@ -34,7 +34,7 @@ class ColorSelector @JvmOverloads
             binding.colorSelectorArrowRight.setOnClickListener { selectNextColor() }
 
             binding.colorEnabled.setOnCheckedChangeListener {
-                buttonView, isChecked -> broadcastColor()
+                    _, _ -> broadcastColor()
             }
         }
 
@@ -62,22 +62,24 @@ class ColorSelector @JvmOverloads
         fun onColorSelected(color: Int)
     }
 
-    private var colorSelectListener: ColorSelectListener? = null
-
-    fun setColorSelectListener(listener: ColorSelectListener) {
-        this.colorSelectListener = listener
-    }
-
-    fun setSelectedColor(color: Int) {
-        var index = listOfColors.indexOf(color)
-        if (index == -1) {
-            binding.colorEnabled.isChecked = false
-            index = 0
-        } else {
-            binding.colorEnabled.isChecked = true
+    var selectedColorValue: Int = android.R.color.transparent
+        set(value) {
+            var index = listOfColors.indexOf(value)
+            if (index == -1) {
+                binding.colorEnabled.isChecked = false
+                index = 0
+            } else {
+                binding.colorEnabled.isChecked = true
+            }
+            selectedColorIndex = index
+            binding.selectedColor.setBackgroundColor(listOfColors[selectedColorIndex])
+            field = value
         }
-        selectedColorIndex = index
-        binding.selectedColor.setBackgroundColor(listOfColors[selectedColorIndex])
+
+    private var colorSelectListeners: ArrayList<(Int) -> Unit> = arrayListOf()
+
+    fun addListener(function: (Int) -> Unit) {
+        this.colorSelectListeners.add(function)
     }
 
     private fun broadcastColor() {
@@ -85,6 +87,6 @@ class ColorSelector @JvmOverloads
             listOfColors[selectedColorIndex]
         else
             Color.TRANSPARENT
-        this.colorSelectListener?.onColorSelected(color)
+        this.colorSelectListeners.forEach { it(color) }
     }
 }

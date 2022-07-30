@@ -63,13 +63,7 @@ class NoteActivity : AppCompatActivity() {
         mainBinding.content.commentsList?.layoutManager = LinearLayoutManager(this)
         mainBinding.content.commentsList?.adapter = commentsAdapter
 
-        colorSelector.setColorSelectListener(
-            object: ColorSelector.ColorSelectListener {
-                override fun onColorSelected(color: Int) {
-                    noteColor = color
-                }
-            }
-        )
+        colorSelector.addListener { noteColor = it }
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -95,7 +89,7 @@ class NoteActivity : AppCompatActivity() {
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
         noteColor = note.color
-        colorSelector.setSelectedColor(note.color)
+        colorSelector.selectedColorValue = note.color
 
 
         val coursePosition = DataManager.courses.values.indexOf(note.course)
