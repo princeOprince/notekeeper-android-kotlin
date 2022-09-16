@@ -10,6 +10,8 @@ import org.hamcrest.Matchers.*
 import androidx.test.espresso.action.ViewActions.*
 import org.junit.Rule
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import com.princeoprince.notekeeper.model.DataManager
+import com.princeoprince.notekeeper.model.NoteInfo
 
 @RunWith(AndroidJUnit4::class)
 class NextThroughNotesTest{

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.princeoprince.notekeeper.databinding.ActivityNoteListBinding
+import com.princeoprince.notekeeper.model.DataManager
 
 class NoteListActivity : AppCompatActivity() {
 

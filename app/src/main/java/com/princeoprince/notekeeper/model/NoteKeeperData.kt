@@ -1,4 +1,4 @@
-package com.princeoprince.notekeeper
+package com.princeoprince.notekeeper.model
 
 import android.graphics.Color
 import androidx.core.app.Person

@@ -1,4 +1,4 @@
-package com.princeoprince.notekeeper
+package com.princeoprince.notekeeper.model
 
 import androidx.core.app.Person
 
@@ -78,26 +78,32 @@ object DataManager {
         var note = NoteInfo(course, "Dynamic intent resolution",
             "Wow, intents allow components to be resolved at runtime")
         note.comments.add(
-            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis()))
+            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis())
+        )
         note.comments.add(
             NoteComment(sender2, "We should review this",
-                System.currentTimeMillis() - 5000))
+                System.currentTimeMillis() - 5000)
+        )
         note.comments.add(
             NoteComment(sender3, "This is good to know",
-                System.currentTimeMillis() - 10000))
+                System.currentTimeMillis() - 10000)
+        )
         notes.add(note)
 
         note = NoteInfo(course,
             "Delegating intents",
             "PendingIntents are powerful; they delegate much more than just a component invocation")
         note.comments.add(
-            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis()))
+            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis())
+        )
         note.comments.add(
             NoteComment(sender2, "We should review this",
-                System.currentTimeMillis() - 5000))
+                System.currentTimeMillis() - 5000)
+        )
         note.comments.add(
             NoteComment(sender3, "This is good to know",
-                System.currentTimeMillis() - 10000))
+                System.currentTimeMillis() - 10000)
+        )
         notes.add(note)
 
         course = courses["android_async"]!!
@@ -105,69 +111,99 @@ object DataManager {
         note = NoteInfo(course, "Service default threads",
             "Did you know that by default an Android Service will tie up the UI thread?")
         note.comments.add(
-            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis()))
+            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis())
+        )
         note.comments.add(
             NoteComment(sender2, "We should review this",
-                System.currentTimeMillis() - 5000))
+                System.currentTimeMillis() - 5000)
+        )
         note.comments.add(
             NoteComment(sender3, "This is good to know",
-                System.currentTimeMillis() - 10000))
+                System.currentTimeMillis() - 10000)
+        )
         notes.add(note)
 
         note = NoteInfo(course, "Long running operations",
             "Foreground Services can be tied to a notification icon")
         note.comments.add(
-            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis()))
+            NoteComment(sender1, "Excellent Point!", System.currentTimeMillis())
+        )
         note.comments.add(
             NoteComment(sender2, "We should review this",
-                System.currentTimeMillis() - 5000))
+                System.currentTimeMillis() - 5000)
+        )
         note.comments.add(
             NoteComment(sender3, "This is good to know",
-                System.currentTimeMillis() - 10000))
+                System.currentTimeMillis() - 10000)
+        )
         notes.add(note)
 
         course = courses["java_lang"]!!
 
         note = NoteInfo(course, "Parameters",
             "Leverage variable-length parameter lists")
-        note.comments.add(NoteComment(sender1, "Excellent Point!",
-            System.currentTimeMillis()))
-        note.comments.add(NoteComment(sender2, "We should review this",
-            System.currentTimeMillis() - 5000))
-        note.comments.add(NoteComment(sender3, "This is good to know",
-            System.currentTimeMillis() - 10000))
+        note.comments.add(
+            NoteComment(sender1, "Excellent Point!",
+            System.currentTimeMillis())
+        )
+        note.comments.add(
+            NoteComment(sender2, "We should review this",
+            System.currentTimeMillis() - 5000)
+        )
+        note.comments.add(
+            NoteComment(sender3, "This is good to know",
+            System.currentTimeMillis() - 10000)
+        )
         notes.add(note)
 
         note = NoteInfo(course, "Anonymous classes",
             "Anonymous classes simplify implementing one-use types")
-        note.comments.add(NoteComment(sender1, "Excellent Point!",
-            System.currentTimeMillis()))
-        note.comments.add(NoteComment(sender2, "We should review this",
-            System.currentTimeMillis() - 5000))
-        note.comments.add(NoteComment(sender3, "This is good to know",
-            System.currentTimeMillis() - 10000))
+        note.comments.add(
+            NoteComment(sender1, "Excellent Point!",
+            System.currentTimeMillis())
+        )
+        note.comments.add(
+            NoteComment(sender2, "We should review this",
+            System.currentTimeMillis() - 5000)
+        )
+        note.comments.add(
+            NoteComment(sender3, "This is good to know",
+            System.currentTimeMillis() - 10000)
+        )
         notes.add(note)
 
         course = courses["java_core"]!!
 
         note = NoteInfo(course, "Compiler options",
             "The -jar option isn't compatible with with the -cp option")
-        note.comments.add(NoteComment(sender1, "Excellent Point!",
-            System.currentTimeMillis()))
-        note.comments.add(NoteComment(sender2, "We should review this",
-            System.currentTimeMillis() - 5000))
-        note.comments.add(NoteComment(sender3, "This is good to know",
-            System.currentTimeMillis() - 10000))
+        note.comments.add(
+            NoteComment(sender1, "Excellent Point!",
+            System.currentTimeMillis())
+        )
+        note.comments.add(
+            NoteComment(sender2, "We should review this",
+            System.currentTimeMillis() - 5000)
+        )
+        note.comments.add(
+            NoteComment(sender3, "This is good to know",
+            System.currentTimeMillis() - 10000)
+        )
         notes.add(note)
 
         note = NoteInfo(course, "Serialization",
             "Remember to include SerialVersionUID to assure version compatibility")
-        note.comments.add(NoteComment(sender1, "Excellent Point!",
-            System.currentTimeMillis()))
-        note.comments.add(NoteComment(sender2, "We should review this",
-            System.currentTimeMillis() - 5000))
-        note.comments.add(NoteComment(sender3, "This is good to know",
-            System.currentTimeMillis() - 10000))
+        note.comments.add(
+            NoteComment(sender1, "Excellent Point!",
+            System.currentTimeMillis())
+        )
+        note.comments.add(
+            NoteComment(sender2, "We should review this",
+            System.currentTimeMillis() - 5000)
+        )
+        note.comments.add(
+            NoteComment(sender3, "This is good to know",
+            System.currentTimeMillis() - 10000)
+        )
         notes.add(note)
     }
 }

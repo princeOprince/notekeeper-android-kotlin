@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
+import com.princeoprince.notekeeper.model.DataManager
 
 class AppWidgetRemoteViewsFactory(val context: Context)  :
     RemoteViewsService.RemoteViewsFactory {

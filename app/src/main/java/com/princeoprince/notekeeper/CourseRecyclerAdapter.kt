@@ -1,13 +1,13 @@
 package com.princeoprince.notekeeper
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.princeoprince.notekeeper.model.CourseInfo
 
 class CourseRecyclerAdapter(private val context: Context, private val courses: List<CourseInfo>) :
         RecyclerView.Adapter<CourseRecyclerAdapter.ViewHolder>() {

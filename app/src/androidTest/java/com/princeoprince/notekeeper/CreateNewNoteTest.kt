@@ -12,6 +12,8 @@ import androidx.test.espresso.action.ViewActions.*
 import org.junit.Rule
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import com.princeoprince.notekeeper.model.CourseInfo
+import com.princeoprince.notekeeper.model.DataManager
 
 @RunWith(AndroidJUnit4::class)
 class CreateNewNoteTest{

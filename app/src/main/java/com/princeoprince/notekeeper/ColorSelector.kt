@@ -22,6 +22,8 @@ class ColorSelector @JvmOverloads
             val typedArray = context.obtainStyledAttributes(
                 attributeSet, R.styleable.ColorSelector
             )
+            listOfColors = typedArray.getTextArray(R.styleable.ColorSelector_colors)
+                .map { Color.parseColor(it.toString()) }
             typedArray.recycle()
             orientation = HORIZONTAL
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)
@@ -56,10 +58,6 @@ class ColorSelector @JvmOverloads
         }
         binding.selectedColor.setBackgroundColor(listOfColors[selectedColorIndex])
         broadcastColor()
-    }
-
-    interface ColorSelectListener {
-        fun onColorSelected(color: Int)
     }
 
     var selectedColorValue: Int = android.R.color.transparent

@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.princeoprince.notekeeper.databinding.ActivityItemsBinding
+import com.princeoprince.notekeeper.model.DataManager
+import com.princeoprince.notekeeper.model.NoteInfo
 
 class ItemsActivity :
     AppCompatActivity(),

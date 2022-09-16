@@ -2,6 +2,8 @@ package com.princeoprince.notekeeper
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
+import com.princeoprince.notekeeper.model.DataManager
+import com.princeoprince.notekeeper.model.NoteInfo
 
 class ItemsActivityViewModel: ViewModel() {
 

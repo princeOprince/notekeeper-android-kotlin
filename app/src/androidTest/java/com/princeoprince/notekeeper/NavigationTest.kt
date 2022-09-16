@@ -13,6 +13,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.NavigationViewActions
+import com.princeoprince.notekeeper.model.DataManager
 
 @RunWith(AndroidJUnit4::class)
 class NavigationTest {

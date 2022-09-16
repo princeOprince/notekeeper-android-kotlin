@@ -1,6 +1,5 @@
 package com.princeoprince.notekeeper
 
-import android.app.Notification
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -8,12 +7,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.princeoprince.notekeeper.databinding.ActivityMainBinding
+import com.princeoprince.notekeeper.model.CourseInfo
+import com.princeoprince.notekeeper.model.DataManager
+import com.princeoprince.notekeeper.model.NoteInfo
 
 class NoteActivity : AppCompatActivity() {
     private val tag = this::class.simpleName

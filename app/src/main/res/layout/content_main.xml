@@ -59,7 +59,8 @@
         android:layout_width="260dp"
         android:layout_height="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/colorSelectorLabel" />
+        app:layout_constraintTop_toBottomOf="@id/colorSelectorLabel"
+        app:colors="@array/note_color_array"/>
 
     <View
         android:id="@+id/divider"

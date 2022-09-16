@@ -11,6 +11,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.Person
 import androidx.core.app.RemoteInput
 import androidx.core.content.ContextCompat
+import com.princeoprince.notekeeper.model.NoteInfo
 
 object MessagingStyleNotification {
 

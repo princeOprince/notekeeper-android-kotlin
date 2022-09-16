@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import com.princeoprince.notekeeper.databinding.ActivityNoteQuickViewBinding
+import com.princeoprince.notekeeper.model.DataManager
 
 class NoteQuickViewActivity : AppCompatActivity() {
 

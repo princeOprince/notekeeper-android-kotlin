@@ -1,5 +1,6 @@
 package com.princeoprince.notekeeper
 
+import com.princeoprince.notekeeper.model.DataManager
 import org.junit.Test
 
 import org.junit.Assert.*
